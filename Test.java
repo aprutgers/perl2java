@@ -10,7 +10,7 @@ import static perl.cpan.DataDumper.Dumper;
 import static perl.internals.DigestMD5.md5_hex;
 public class Test {
 	private static void perl_module() throws IOException,FileNotFoundException{
-perl_moduleperl_module	} /* end of method perl_module */
+	} /* end of method perl_module */
 
 	public static void test(List<String> p2j_args) {
 		String value  = p2j_args.listIterator().next();;

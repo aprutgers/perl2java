@@ -107,11 +107,13 @@ sub add_sub_code
 	my $self = shift;
 	my $code = shift;
 
+        Log::debug("add_sub_code code=$code");
+
 	my $currentsub = $self->{currentsub}||'perl_module';
 
 	# do not add the main call to the perl_module
-	return if ($currentsub eq 'perl_module' && $code =~ /main/);
-	Log::debug("add_sub_code currentsub=$currentsub");
+	return if ($currentsub eq 'perl_module' && ($code =~ /main/||$code =~ /perl_module/));
+	Log::debug("add_sub_code currentsub=$currentsub code=$code");
 	$self->{subcode}->{$currentsub} .= $code;
 }
 
@@ -328,6 +330,7 @@ sub generateJavaClass
 	#}
 
         # methods (subs)
+	Log::debug("generateJavaClass generate methods (subs)");
         foreach my $sub (@{$self->getSubroutines()})
         {
 
@@ -337,6 +340,7 @@ sub generateJavaClass
 		if ($sub eq 'main') { # main specific
                    $formal_sub_params = 'String ARGV[]';
                    $throws = 'throws IOException,FileNotFoundException';
+		   Log::debug(" generate perl_module() call to execute perl module statements");
 		   $init   = qq|\t\tperl_module();\n|; # generate call to execute perl module statements
 	        }
 
@@ -345,7 +349,7 @@ sub generateJavaClass
 		$javacode .= $init if ($sub eq 'main');
 
 		# parameters and local variables
-
+		Log::debug("parameters and local variables");
 		foreach my $var (@{$self->{variables}}) {
 			Log::debug("local sub=$sub vars scope=".$var->{scope});
 			next if ($var->{scope} ne $sub);
