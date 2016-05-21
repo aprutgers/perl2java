@@ -2,13 +2,14 @@
 
 use strict;
 use Data::Dumper;
-use Digest::MD5;
+use Digest::MD5 qw(md5 md5_hex md5_base64);
 
 sub test
 {
 
 	my $value = shift;
 	print($value);
+	print("\n");
 }
 
 sub main
@@ -25,7 +26,7 @@ sub main
 	print(STDERR "stderr $integer");
 	print(STDOUT "stdout\n");
 
-	print("a string");
+	print("a string\n");
 
 	open(FILE,">out");
 	print(FILE "data");

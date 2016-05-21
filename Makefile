@@ -1,4 +1,4 @@
-all: parser test
+all: parser test run
 
 parser:  perly.yp
 	yapp -v perly.yp
@@ -6,3 +6,7 @@ parser:  perly.yp
 
 test:
 	perl yappie.pl test.pl
+
+run:
+	javac Test.java
+	java Test

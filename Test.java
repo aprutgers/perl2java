@@ -15,6 +15,7 @@ public class Test {
 	public static void test(List<String> p2j_args) {
 		String value  = p2j_args.listIterator().next();;
 		System.out.print(value);
+		System.out.print("\n");
 	} /* end of method test */
 
 	public static void main(String ARGV[]) throws IOException,FileNotFoundException{
@@ -26,7 +27,7 @@ public class Test {
 		md5_hex((Arrays.asList("test"))); /* FUNC_optexpr */
 		System.err.print("stderr "+integer+"");
 		System.out.print("stdout\n");
-		System.out.print("a string");
+		System.out.print("a string\n");
 		BufferedWriter  p2j_file = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("out"), "US-ASCII"));
 		p2j_file.write("data");
 		p2j_file.close();
